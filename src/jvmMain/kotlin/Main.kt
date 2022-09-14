@@ -4,6 +4,7 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberTrayState
 import notification.NotificationListener
 import notification.NotificationScheduler
+import notification.event.AsgobasInstantCombatNotification
 import notification.event.InstantCombatNotification
 import notification.listener.SystemNotificationListener
 
@@ -19,6 +20,10 @@ fun main() = application {
     scheduler.schedule(InstantCombatNotification())
     scheduler.schedule(InstantCombatNotification(remindBeforeMinutes = 1))
     scheduler.schedule(InstantCombatNotification(remindBeforeMinutes = 5))
+    // Asgobas' Instant Combat
+    scheduler.schedule(AsgobasInstantCombatNotification())
+    scheduler.schedule(AsgobasInstantCombatNotification(remindBeforeMinutes = 1))
+    scheduler.schedule(AsgobasInstantCombatNotification(remindBeforeMinutes = 5))
 
     Tray(
         tooltip = "NosAlert",

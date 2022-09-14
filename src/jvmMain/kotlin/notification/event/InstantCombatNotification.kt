@@ -1,33 +1,15 @@
 package notification.event
 
-import notification.Notification
-import java.time.Instant
 import java.time.LocalTime
-import java.time.ZoneId
-import java.time.temporal.ChronoUnit
 
-class InstantCombatNotification(private val remindBeforeMinutes: Long = 0L) : Notification {
+class InstantCombatNotification(remindBeforeMinutes: Long = 0L) :
+    EventNotification(remindBeforeMinutes, availableOnChannels = setOf(1, 2)) {
 
-    override val message: String
-        get() {
-            return when (remindBeforeMinutes) {
-                0L   -> "Instant Combat is starting now!"
-                1L   -> "Instant Combat will start in 1 minute!"
-                else -> "Instant Combat will start in $remindBeforeMinutes minutes!"
-            }
-        }
-
-    private val schedule = mutableListOf<LocalTime>()
+    override val event: String = "Instant Combat"
 
     init {
         for (hour in 0 until 23 step 2) {
-            schedule.add(LocalTime.of(hour, 0, 0).minusMinutes(remindBeforeMinutes))
+            addTime(LocalTime.of(hour, 0))
         }
-    }
-
-    override fun canPush(now: Instant): Boolean {
-        val currentTime = LocalTime.from(now.atZone(ZoneId.systemDefault())).truncatedTo(ChronoUnit.SECONDS)
-
-        return schedule.binarySearch { it.compareTo(currentTime) } >= 0
     }
 }

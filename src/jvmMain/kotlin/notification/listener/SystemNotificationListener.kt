@@ -9,7 +9,7 @@ class SystemNotificationListener(private val controller: TrayState) : Notificati
 
     override fun push(notification: Notification) {
         controller.sendNotification(
-            SystemNotification("NosAlert", notification.message, SystemNotification.Type.Info)
+            SystemNotification("NosAlert", notification.message)
         )
     }
 }
