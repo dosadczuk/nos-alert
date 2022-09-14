@@ -1,5 +1,4 @@
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.window.ApplicationScope
 import androidx.compose.ui.window.Tray
 import notification.NotificationListener
@@ -30,9 +29,9 @@ fun ApplicationScope.NosAlert(state: NosAlertState) {
 @Composable
 private fun ApplicationScope.ApplicationTray(state: NosAlertState) {
     Tray(
+        LocalResources.current.icon,
         tooltip = "NosAlert",
         state = state.tray,
-        icon = painterResource("icon.jpg"),
         menu = {
             Item("Exit", onClick = ::exitApplication)
         }
