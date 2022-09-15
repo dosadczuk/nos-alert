@@ -1,6 +1,6 @@
 package notification
 
-interface NotificationListener {
+interface NotificationChannel {
 
     /**
      * Push notification.

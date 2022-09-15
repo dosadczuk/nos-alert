@@ -1,11 +1,11 @@
-package notification.listener
+package notification.channel
 
 import androidx.compose.ui.window.TrayState
 import notification.Notification
-import notification.NotificationListener
+import notification.NotificationChannel
 import androidx.compose.ui.window.Notification as SystemNotification
 
-class SystemNotificationListener(private val controller: TrayState) : NotificationListener {
+class SystemNotificationChannel(private val controller: TrayState) : NotificationChannel {
 
     override fun push(notification: Notification) {
         controller.sendNotification(
