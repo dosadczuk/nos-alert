@@ -37,7 +37,7 @@ compose.desktop {
         mainClass = "MainKt"
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "nos-alert"
+            packageName = "NosAlert"
             packageVersion = "1.0.0"
         }
     }

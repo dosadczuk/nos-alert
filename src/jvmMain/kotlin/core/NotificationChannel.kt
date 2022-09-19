@@ -1,9 +1,9 @@
-package notification
+package core
 
 interface NotificationChannel {
 
     /**
-     * Push notification.
+     * Push notification into the channel.
      */
     fun push(notification: Notification)
 }

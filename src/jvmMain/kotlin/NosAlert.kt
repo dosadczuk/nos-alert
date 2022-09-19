@@ -1,27 +1,30 @@
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.window.ApplicationScope
 import androidx.compose.ui.window.Tray
-import notification.NotificationChannel
-import notification.NotificationScheduler
-import notification.channel.SystemNotificationChannel
-import notification.event.AsgobasInstantCombatNotification
-import notification.event.InstantCombatNotification
+import core.MultipleNotificationChannelProvider
+import core.NotificationDispatcher
+import core.NotificationScheduler
+import core.channel.SystemNotificationChannel
+import event.EventNotificationChannelProvider
+import event.type.AsgobasInstantCombatNotification
+import event.type.InstantCombatNotification
 
 @Composable
 fun ApplicationScope.NosAlert(state: NosAlertState) {
-    val channels = listOf<NotificationChannel>(
-        SystemNotificationChannel(state.tray)
+    val channels = listOf(SystemNotificationChannel(state.tray))
+    val provider = MultipleNotificationChannelProvider(
+        EventNotificationChannelProvider(channels)
     )
 
-    val scheduler = NotificationScheduler(channels)
+    val scheduler = NotificationScheduler(NotificationDispatcher(provider))
     // Instant Combat
     scheduler.schedule(InstantCombatNotification())
-    scheduler.schedule(InstantCombatNotification(remindBeforeMinutes = 1))
-    scheduler.schedule(InstantCombatNotification(remindBeforeMinutes = 5))
+    scheduler.schedule(InstantCombatNotification(remindBeforeInMinutes = 1))
+    scheduler.schedule(InstantCombatNotification(remindBeforeInMinutes = 5))
     // Asgobas' Instant Combat
     scheduler.schedule(AsgobasInstantCombatNotification())
-    scheduler.schedule(AsgobasInstantCombatNotification(remindBeforeMinutes = 1))
-    scheduler.schedule(AsgobasInstantCombatNotification(remindBeforeMinutes = 5))
+    scheduler.schedule(AsgobasInstantCombatNotification(remindBeforeInMinutes = 1))
+    scheduler.schedule(AsgobasInstantCombatNotification(remindBeforeInMinutes = 5))
 
     ApplicationTray(state)
 }
