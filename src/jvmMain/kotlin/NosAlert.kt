@@ -7,7 +7,7 @@ import core.NotificationScheduler
 import core.channel.SystemNotificationChannel
 import event.EventNotificationChannelProvider
 import event.type.AsgobasInstantCombatNotification
-import event.type.InstantCombatNotification
+import event.type.ClassicInstantCombatNotification
 
 @Composable
 fun ApplicationScope.NosAlert(state: NosAlertState) {
@@ -18,9 +18,9 @@ fun ApplicationScope.NosAlert(state: NosAlertState) {
 
     val scheduler = NotificationScheduler(NotificationDispatcher(provider))
     // Instant Combat
-    scheduler.schedule(InstantCombatNotification())
-    scheduler.schedule(InstantCombatNotification(remindBeforeInMinutes = 1))
-    scheduler.schedule(InstantCombatNotification(remindBeforeInMinutes = 5))
+    scheduler.schedule(ClassicInstantCombatNotification())
+    scheduler.schedule(ClassicInstantCombatNotification(remindBeforeInMinutes = 1))
+    scheduler.schedule(ClassicInstantCombatNotification(remindBeforeInMinutes = 5))
     // Asgobas' Instant Combat
     scheduler.schedule(AsgobasInstantCombatNotification())
     scheduler.schedule(AsgobasInstantCombatNotification(remindBeforeInMinutes = 1))
