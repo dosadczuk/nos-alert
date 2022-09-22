@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.github.dosadczuk"
-version = "1.0-SNAPSHOT"
+version = "1.0.0"
 
 repositories {
     google()
@@ -37,8 +37,9 @@ compose.desktop {
         mainClass = "MainKt"
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            outputBaseDir.set(project.buildDir.resolve("out"))
+
             packageName = "NosAlert"
-            packageVersion = "1.0.0"
         }
     }
 }
