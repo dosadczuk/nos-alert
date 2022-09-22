@@ -34,8 +34,8 @@ abstract class EventNotification(
      */
     private val calendar = mutableSetOf<LocalTime>()
 
-    protected fun addToCalendar(time: LocalTime) {
-        calendar.add(time.minusMinutes(remindBeforeInMinutes))
+    protected fun addToCalendar(hour: Int, minute: Int) {
+        calendar.add(LocalTime.of(hour, minute).minusMinutes(remindBeforeInMinutes))
     }
 
     override fun inCalendar(now: Instant): Boolean {

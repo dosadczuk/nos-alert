@@ -1,7 +1,6 @@
 package event.type
 
 import event.EventNotification
-import java.time.LocalTime
 
 class ClassicInstantCombatNotification(remindBeforeInMinutes: Long = 0L) : EventNotification(remindBeforeInMinutes) {
 
@@ -9,7 +8,7 @@ class ClassicInstantCombatNotification(remindBeforeInMinutes: Long = 0L) : Event
 
     init {
         for (hour in 0 until 23 step 2) {
-            addToCalendar(LocalTime.of(hour, 0))
+            addToCalendar(hour, minute = 0)
         }
     }
 }
