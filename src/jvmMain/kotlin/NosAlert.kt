@@ -18,11 +18,9 @@ fun ApplicationScope.NosAlert(state: NosAlertState) {
 
     val scheduler = NotificationScheduler(NotificationDispatcher(provider))
     // Instant Combat
-    scheduler.schedule(ClassicInstantCombatNotification())
     scheduler.schedule(ClassicInstantCombatNotification(remindBeforeInMinutes = 1))
     scheduler.schedule(ClassicInstantCombatNotification(remindBeforeInMinutes = 5))
     // Asgobas' Instant Combat
-    scheduler.schedule(AsgobasInstantCombatNotification())
     scheduler.schedule(AsgobasInstantCombatNotification(remindBeforeInMinutes = 1))
     scheduler.schedule(AsgobasInstantCombatNotification(remindBeforeInMinutes = 5))
 
